@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Construction Worker Safety Monitor — Jaitra Gandhi</title>
+<meta name="description" content="EG2A17 wearable sensor-to-dashboard pipeline. Database, retrieval layer and dashboard.">
+<meta name="author" content="Gandhi Jaitra Nimeshkumar">
+<meta name="theme-color" content="#170C0F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="mk">JG</span> Jaitra Gandhi</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+    <div class="menu" id="menu">
+      <a class="nl" href="index.html#work">Work</a>
+      <a class="nl" href="index.html#skills">Skills</a>
+      <a class="nl" href="index.html#about">About</a>
+      <a class="nl" href="index.html#contact">Contact</a>
+      <a class="navcta" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</nav><header class="phero">
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">Home</a> / <a href="index.html#work">Projects</a> / Safety Monitor</p>
+    <p class="eyebrow">EG2A17 · Data Engineering Project · 2026</p>
+    <h1>Construction Worker Safety Monitor</h1>
+    <p class="lede">A wearable sensor-to-dashboard pipeline that detects falls, slip-trip-falls and near misses in real time. My responsibility was the database, the retrieval layer and the dashboard.</p>
+    <div class="meta"><div><div class="k">My role</div><div class="v">Database, dashboard &amp; visualisation</div></div><div><div class="k">System type</div><div class="v">Real-time IoT pipeline</div></div><div><div class="k">Sensor data</div><div class="v">6-axis IMU · 100 Hz</div></div><div><div class="k">Format</div><div class="v">Team of 4</div></div></div>
+  </div>
+</header>
+<section class="rub" style="border-top:0">
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact"><div class="v" data-count="100">100</div><div class="l">Hz sample rate</div></div>
+      <div class="fact"><div class="v" data-count="3">3</div><div class="l">Tables, 2 backends</div></div>
+      <div class="fact"><div class="v" data-count="8">8</div><div class="l">Events in demo run</div></div>
+      <div class="fact"><div class="v" data-count="3">3</div><div class="l">Second refresh</div></div>
+    </div>
+  </div>
+</section>
+<section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">01 — Project scope &amp; client's problem</p>
+    <h2>A supervisor cannot watch <i>every worker at once.</i></h2>
+    <div class="cont">
+<p>Falls, slips and trips are among the most common causes of injury on construction sites. Workers operate at height, cross uneven ground and carry equipment, and when something goes wrong there is often nobody watching. An incident can go unnoticed for minutes.</p>
+<p>Our team of four was asked to build a wearable prototype that continuously monitors movement and raises an alert when a possible incident occurs. The scope covered the full data engineering pipeline — collection, transmission, validation, processing, storage, retrieval and visualisation — for a single device paired to a nearby computer. GPS tracking, cloud deployment, medical diagnosis and automatic emergency notification were explicitly out of scope.</p></div>
+  </div>
+</section><section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">02 — My role &amp; solution</p>
+    <h2>I owned everything downstream of the sensor: <i>storage, retrieval and the screen.</i></h2>
+    <div class="cont">
+<p>My teammates handled the firmware, the BLE client and the detection algorithm. My responsibility was database, dashboard and visualisation — turning a 100 Hz stream into something durable, and then into something a supervisor could read at a glance.</p>
+<p><strong>The schema was the first real decision.</strong> Rather than one wide table, I split the pipeline across three, so the raw record is never overwritten by processing. That means thresholds can be re-tuned and an entire recorded session replayed without collecting a single new sample.</p>
+<div class="sig">
+  <div class="sig-top"><b>nesso_db</b> — the schema I designed. Tap a table.</div>
+  <div class="sig-body" role="tablist">
+    <button class="tbl" role="tab" aria-selected="true" data-i="0"><div class="k">STAGE 01 · COLLECTION</div><div class="t">imu_readings</div><div class="s">Raw samples, exactly as they arrived</div></button>
+    <button class="tbl" role="tab" aria-selected="false" data-i="1"><div class="k">STAGE 02 · PROCESSING</div><div class="t">imu_features</div><div class="s">Derived motion values</div></button>
+    <button class="tbl" role="tab" aria-selected="false" data-i="2"><div class="k">STAGE 03 · INSIGHT</div><div class="t">events</div><div class="s">Detected safety incidents</div></button>
+  </div>
+  <div class="sig-detail" id="sigd"></div>
+</div>
+<p style="margin-top:22px"><strong>Two backends behind one interface.</strong> I wrote a <code>DataStore</code> class that hides the difference between MariaDB and SQLite — the SQL is nearly identical and only the parameter placeholder differs, so the rest of the project doesn't care which is running. MariaDB is the real server; SQLite is a zero-setup fallback that keeps a demonstration alive if the server won't start. Switching is one line in <code>config.py</code>.</p>
+<p><strong>Writes are buffered, not per-sample.</strong> At 100 Hz, committing every reading individually would mean 100 transactions per second. I buffer samples and flush every 100, cutting database round-trips by two orders of magnitude while keeping at most one second of data at risk.</p>
+<p><strong>The dashboard states its verdict before its data.</strong> A red banner names the active alert with type, severity, peak value and timestamp; a green banner confirms all clear. Below sit four metrics, live acceleration and angular-rate charts, and the full event log — refreshing every three seconds without anyone touching the database directly.</p></div>
+  </div>
+</section><section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">03 — My work process</p>
+    <h2>Schema first, then the layer that reads it, <i>then the layer people look at.</i></h2>
+    <div class="cont">
+<div class="steps">
+  <div class="step"><div class="sn">01</div><div class="sb"><strong>Model the pipeline as tables</strong><span>Mapped each pipeline stage to its own table so raw, processed and interpreted data never overwrite one another.</span></div></div>
+  <div class="step"><div class="sn">02</div><div class="sb"><strong>Abstract the backend</strong><span>Built <code>DataStore</code> so MariaDB and SQLite are interchangeable, giving the project a working fallback.</span></div></div>
+  <div class="step"><div class="sn">03</div><div class="sb"><strong>Buffer the writes</strong><span>Batched inserts at 100 samples per flush after per-sample commits proved wasteful at 100 Hz.</span></div></div>
+  <div class="step"><div class="sn">04</div><div class="sb"><strong>Prove retrieval independently</strong><span>Wrote a query tool reporting row counts, time span, recent samples, all events and the largest acceleration spikes — verifying storage without the dashboard.</span></div></div>
+  <div class="step"><div class="sn">05</div><div class="sb"><strong>Build around the alert</strong><span>Led with the banner, then metrics, then charts, then history — verdict first, evidence second.</span></div></div>
+  <div class="step"><div class="sn">06</div><div class="sb"><strong>Read my own charts against the config</strong><span>Comparing plotted angular rate to the configured threshold surfaced the defect below.</span></div></div>
+</div></div>
+  </div>
+</section><section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">04 — Outcome &amp; results achieved</p>
+    <h2>A working monitor — <i>and a defect the dashboard exposed.</i></h2>
+    <div class="cont">
+<p>The system ran end to end. Motion data streamed from the Nesso N1 over BLE, was validated, stored and analysed, and surfaced live. In the recorded demonstration the pipeline logged <strong>3 falls or slip-trip-falls and 5 near misses</strong>, each stored with type, severity, peak value and timestamp, with the most recent shown in the banner.</p>
+<div class="wins">
+  <div class="win"><strong>Raw data preserved</strong><span>Three-table split allows unlimited re-processing</span></div>
+  <div class="win"><strong>Backend independent</strong><span>MariaDB or SQLite, one line to switch</span></div>
+  <div class="win"><strong>100× fewer transactions</strong><span>Batched inserts sustain 100 Hz</span></div>
+  <div class="win"><strong>Survives restart</strong><span>Dashboard reloads full history from the database</span></div>
+</div>
+<div class="finding">
+  <p class="rub-tag">The finding</p>
+  <h3>A threshold that could never fire.</h3>
+  <p>Plotting angular rate next to the configured near-miss threshold showed something wrong. The recorded gyroscope values peak around <code>0.18</code>, while <code>NEARMISS_GYR</code> is set to <code>350</code> deg/s. Those two numbers cannot both be right — the rotational branch of the detector is mathematically unreachable, meaning every near miss in the demonstration was raised by the post-impact recovery path instead.</p>
+  <p>The likely cause is a units or scaling mismatch between the firmware and the configured limits. It is not a bug any single component would reveal on its own: the firmware transmits, the detector runs, the database stores and the dashboard draws — every part reports success. It only becomes visible when the visualisation is read against the configuration, which is exactly what the dashboard layer is for.</p>
+</div>
+<div class="figs">
+  <figure><img src="img/dep-dashboard.png" alt="Streamlit safety dashboard showing an active near-miss alert, event counts and live acceleration chart">
+    <figcaption><b>Live dashboard</b> — active alert banner, event counts, and acceleration traces during a demonstration run.</figcaption></figure>
+  <figure><img src="img/dep-gyro.png" alt="Angular rate time series chart with values between -0.12 and 0.18">
+    <figcaption><b>Angular rate</b> — the chart that exposed the threshold defect. Peaks near 0.18 against a configured limit of 350.</figcaption></figure>
+</div>
+<div class="limits">
+  <p class="rub-tag">Limitations &amp; what I would improve</p>
+  <p><strong>The sample counter is a display cap, not a total.</strong> The dashboard queries the most recent 1000 rows, so the "samples stored" metric reads 1000 once that many exist, regardless of how much data is held. It should read a <code>COUNT(*)</code> from the database rather than the length of a limited result set.</p>
+  <p><strong>No accuracy figures are reported, deliberately.</strong> We had no labelled movement dataset, so precision, recall and false-positive rates cannot be calculated honestly. Quoting a detection rate from a handful of staged tests would be a number without meaning. Measuring properly needs labelled data from multiple users and movement styles.</p>
+  <p><strong>Other constraints.</strong> The system supports one device with no worker or session identity, so it cannot scale to a site. Everything runs locally — a real deployment would need a cloud database and push notifications rather than an on-screen banner. Detection thresholds are fixed rules rather than a learned model.</p>
+</div></div>
+  </div>
+</section><div class="wrap"><div class="pn"><a href="index.html#work"><div class="k">← Back</div><div class="t">All projects</div></a><a class="next" href="p2-cloud-application.html"><div class="k">Next project →</div><div class="t">Cost-Constrained Cloud Application</div></a></div></div><section class="contact" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h2>Happy to talk about <i>any of this.</i></h2>
+    <p style="max-width:52ch;margin-top:16px">The schema decisions, the AWS trade-offs, or why a gyroscope reading 0.18 against a threshold of 350 is the most interesting thing in my portfolio.</p>
+    <div class="btns">
+      <a class="btn solid" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+      <a class="btn ghost" href="https://github.com/noobmaster69zz" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn ghost" href="mailto:jaitra.gandhi@gmail.com">Email me</a>
+      <a class="btn ghost" href="Gandhi_Jaitra_Nimeshkumar_Resume.pdf" target="_blank" rel="noopener">Résumé ↓</a>
+    </div>
+  </div>
+</section><footer>
+  <div class="wrap">
+    <span>© 2026 Gandhi Jaitra Nimeshkumar · Diploma in AI &amp; Data Engineering · Nanyang Polytechnic</span>
+    <span>
+      <a href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="https://github.com/noobmaster69zz" target="_blank" rel="noopener">GitHub</a> ·
+      <a href="Gandhi_Jaitra_Nimeshkumar_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </span>
+  </div>
+</footer>
+<div id="lb"><img id="lbimg" src="" alt=""></div>
+<script src="script.js"></script>
+</body>
+</html>

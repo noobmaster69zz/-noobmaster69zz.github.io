@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cost-Constrained E-Commerce Cloud Application — Jaitra Gandhi</title>
+<meta name="description" content="EG2A16 three-tier AWS application delivered inside a $50 budget and optimised against all six Well-Architected pillars.">
+<meta name="author" content="Gandhi Jaitra Nimeshkumar">
+<meta name="theme-color" content="#170C0F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="mk">JG</span> Jaitra Gandhi</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+    <div class="menu" id="menu">
+      <a class="nl" href="index.html#work">Work</a>
+      <a class="nl" href="index.html#skills">Skills</a>
+      <a class="nl" href="index.html#about">About</a>
+      <a class="nl" href="index.html#contact">Contact</a>
+      <a class="navcta" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</nav><header class="phero">
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">Home</a> / <a href="index.html#work">Projects</a> / Cloud Application</p>
+    <p class="eyebrow">EG2A16 · Cloud Computing Development · 2026</p>
+    <h1>Cost-Constrained E-Commerce Cloud Application</h1>
+    <p class="lede">A secure three-tier product catalogue on AWS — private database, public web tier, object storage — delivered inside a $50 budget, then optimised against all six Well-Architected pillars.</p>
+    <div class="meta"><div><div class="k">My role</div><div class="v">Sole engineer, full stack</div></div><div><div class="k">System type</div><div class="v">Three-tier web application</div></div><div><div class="k">Constraint</div><div class="v">$50 total budget</div></div><div><div class="k">Format</div><div class="v">Solo project</div></div></div>
+  </div>
+</header>
+<section class="rub" style="border-top:0">
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact"><div class="v" data-count="4">4</div><div class="l">Subnets, 2 AZs</div></div>
+      <div class="fact"><div class="v" data-count="9">9</div><div class="l">Products served</div></div>
+      <div class="fact"><div class="v" data-count="6">6</div><div class="l">Pillars optimised</div></div>
+      <div class="fact"><div class="v">$50</div><div class="l">Budget ceiling</div></div>
+    </div>
+  </div>
+</section>
+<section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">01 — Project scope &amp; client's problem</p>
+    <h2>Cost-effective, reliable, efficient and secure — <i>on fifty dollars.</i></h2>
+    <div class="cont">
+<p>The brief asked for a working cloud application for an e-commerce business that met all four qualities at once, with a hard $50 ceiling. Those goals pull against each other, and the budget removed the standard answers: no managed load balancer, no Multi-AZ database failover, no generously sized instances.</p>
+<p>The architecture was fixed — web server, VPC, relational database and object storage — with a home page showing nine products, records held in the database and images served from object storage. That separation is the point: it forces the application to integrate three distinct services rather than serving everything from one box.</p></div>
+  </div>
+</section><section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">02 — My role &amp; solution</p>
+    <h2>Sole engineer, <i>from network layer to application.</i></h2>
+    <div class="cont">
+<p>I designed and provisioned the entire stack. The foundation is a VPC on <code>10.0.0.0/16</code> spanning two availability zones, divided into two public and two private subnets. That division is the central security decision: the EC2 web server sits in a public subnet, while the RDS MySQL instance lives in a private subnet group across both AZs, so the database is never directly addressable from the internet.</p>
+<p>On the instance, a Flask application runs behind nginx as a systemd service so it survives reboots, exposing create, insert, select and update routes against the database. The nine product images sit in a separate S3 bucket and the page template pulls each one straight from the bucket URL — keeping large binary objects out of the database entirely, which is both cheaper and faster than storing them as blobs.</p>
+<p class="rub-tag" style="margin-top:30px">The architecture — tap any resource</p>
+<div class="grid-btns">
+  <button class="node" aria-expanded="false"><div class="t">NETWORK</div><div class="n">VPC</div><div class="d">10.0.0.0/16 across two availability zones. Two public subnets for the web tier, two private for the database.</div></button>
+  <button class="node" aria-expanded="false"><div class="t">COMPUTE</div><div class="n">EC2</div><div class="d">t3.micro running Ubuntu, nginx and Flask under systemd. Public subnet with an auto-assigned public IP.</div></button>
+  <button class="node" aria-expanded="false"><div class="t">DATABASE</div><div class="n">RDS MySQL</div><div class="d">Private subnet group spanning both AZs. Holds product name, price and description. Not publicly routable.</div></button>
+  <button class="node" aria-expanded="false"><div class="t">OBJECTS</div><div class="n">S3</div><div class="d">Nine product images referenced directly by the page template, keeping binaries out of the database.</div></button>
+  <button class="node" aria-expanded="false"><div class="t">ACCESS</div><div class="n">Security group</div><div class="d">HTTP for visitors, SSH for administration, MySQL scoped to the group itself. Everything else denied.</div></button>
+</div></div>
+  </div>
+</section><section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">03 — My work process</p>
+    <h2>Built bottom-up, <i>verifying each layer before adding the next.</i></h2>
+    <div class="cont">
+<div class="steps">
+  <div class="step"><div class="sn">01</div><div class="sb"><strong>Network first</strong><span>VPC, four subnets across two availability zones, and the security group — before launching anything that would live inside it.</span></div></div>
+  <div class="step"><div class="sn">02</div><div class="sb"><strong>Compute</strong><span>A t3.micro Ubuntu instance in the public subnet with an RSA key pair, verified reachable before going further.</span></div></div>
+  <div class="step"><div class="sn">03</div><div class="sb"><strong>Storage</strong><span>RDS MySQL inside a private subnet group, and an S3 bucket holding the nine product images.</span></div></div>
+  <div class="step"><div class="sn">04</div><div class="sb"><strong>Wire the application</strong><span>Pointed Flask at the RDS endpoint and the template at the bucket, then exercised the full CRUD path through the app's own routes.</span></div></div>
+  <div class="step"><div class="sn">05</div><div class="sb"><strong>Optimise against all six pillars</strong><span>One improvement per Well-Architected pillar, each implemented independently with a demonstrable outcome.</span></div></div>
+  <div class="step"><div class="sn">06</div><div class="sb"><strong>Evidence</strong><span>Console screenshots of every resource with the account ID visible, plus a labelled architecture diagram.</span></div></div>
+</div></div>
+  </div>
+</section><section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">04 — Outcome &amp; results achieved</p>
+    <h2>A working catalogue, <i>then six measurable improvements.</i></h2>
+    <div class="cont">
+<p>The finished site renders all nine products with live data — name, price and description read from RDS, images served from S3 — with full create, read and update support through the application. It stayed within the $50 ceiling by keeping the instance small, disabling NAT gateways and stopping billable resources between sessions.</p>
+<p class="rub-tag" style="margin-top:30px">Six improvements, one per pillar — tap to expand</p>
+<div class="grid-btns">
+  <button class="node" aria-expanded="false"><div class="t">OPERATIONAL EXCELLENCE</div><div class="n">CPU alarm</div><div class="d">CloudWatch alarm on EC2 <code>CPUUtilization</code>, 5-minute average, email via SNS. I set the threshold at 50% rather than the textbook 70% because my observed peak was 43.4% — a generic threshold would never have fired on this workload.</div></button>
+  <button class="node" aria-expanded="false"><div class="t">SECURITY</div><div class="n">RDS locked down</div><div class="d">Port 3306 was open to <code>0.0.0.0/0</code>. I replaced it with a rule sourced from the security group itself and deleted the public one, so only the web tier can reach the database. Ports 80 and 22 untouched, so the site stayed up throughout.</div></button>
+  <button class="node" aria-expanded="false"><div class="t">RELIABILITY</div><div class="n">S3 versioning</div><div class="d">Enabled on the product bucket. Overwrites now create versions rather than destroying the previous object, and deletions become recoverable delete markers.</div></button>
+  <button class="node" aria-expanded="false"><div class="t">PERFORMANCE EFFICIENCY</div><div class="n">CloudWatch dashboard</div><div class="d">Four widgets: EC2 CPU, EC2 network in/out, RDS CPU with connections and freeable memory, and S3 bucket size. FreeableMemory sits on a secondary Y-axis — on a shared axis its byte-scale values flattened every other line into a straight edge.</div></button>
+  <button class="node" aria-expanded="false"><div class="t">COST OPTIMISATION</div><div class="n">AWS Budget</div><div class="d">A monthly budget capped at $50 to match the brief, with an email alert fired below the cap so there is room to act rather than a notification that arrives after the money is gone.</div></button>
+  <button class="node" aria-expanded="false"><div class="t">SUSTAINABILITY</div><div class="n">Lifecycle rule</div><div class="d">Noncurrent object versions transition to Glacier Deep Archive after 30 days — deliberately paired with the versioning above, which creates the storage growth this rule then manages.</div></button>
+</div>
+<div class="wins">
+  <div class="win"><strong>Isolated data tier</strong><span>Database private across two AZs</span></div>
+  <div class="win"><strong>Separated concerns</strong><span>Records in RDS, binaries in S3</span></div>
+  <div class="win"><strong>Monitored &amp; alarmed</strong><span>CPU alarm and budget alert wired to email</span></div>
+  <div class="win"><strong>Under budget</strong><span>Delivered within the $50 ceiling</span></div>
+</div>
+<div class="figs">
+  <figure><img src="img/ccd-products.jpg" alt="Rendered product catalogue showing garden tools with prices and descriptions">
+    <figcaption><b>Live product page</b> — records from RDS, images from S3, rendered by Flask.</figcaption></figure>
+  <figure><img src="img/ccd-cloudwatch.jpg" alt="CloudWatch performance dashboard with four monitoring widgets">
+    <figcaption><b>Performance dashboard</b> — the four-widget CloudWatch view, with FreeableMemory on its own axis.</figcaption></figure>
+  <figure><img src="img/ccd-ec2.jpg" alt="AWS EC2 instance detail page in the console">
+    <figcaption><b>Provisioned compute</b> — the EC2 instance backing the web tier.</figcaption></figure>
+</div>
+<div class="limits">
+  <p class="rub-tag">Limitations &amp; what I would improve</p>
+  <p><strong>Credentials live in the application source.</strong> The database endpoint, username and password are written directly into <code>app.py</code>. That is acceptable in a teaching sandbox and unacceptable anywhere else — the correct fix is AWS Secrets Manager with an IAM role attached to the instance, so no credential ever appears in code or in a screenshot.</p>
+  <p><strong>The budget forced real trade-offs.</strong> A single EC2 instance in one availability zone is a single point of failure; production would need an Auto Scaling group behind an Application Load Balancer. The database runs without Multi-AZ failover for the same reason. SSH is open to any IP and should be narrowed to a known range.</p>
+</div></div>
+  </div>
+</section><div class="wrap"><div class="pn"><a href="p1-safety-monitor.html"><div class="k">← Previous</div><div class="t">Construction Worker Safety Monitor</div></a><a class="next" href="p3-sentiment-churn.html"><div class="k">Next project →</div><div class="t">Customer Sentiment &amp; Churn Pipeline</div></a></div></div><section class="contact" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h2>Happy to talk about <i>any of this.</i></h2>
+    <p style="max-width:52ch;margin-top:16px">The schema decisions, the AWS trade-offs, or why a gyroscope reading 0.18 against a threshold of 350 is the most interesting thing in my portfolio.</p>
+    <div class="btns">
+      <a class="btn solid" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+      <a class="btn ghost" href="https://github.com/noobmaster69zz" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn ghost" href="mailto:jaitra.gandhi@gmail.com">Email me</a>
+      <a class="btn ghost" href="Gandhi_Jaitra_Nimeshkumar_Resume.pdf" target="_blank" rel="noopener">Résumé ↓</a>
+    </div>
+  </div>
+</section><footer>
+  <div class="wrap">
+    <span>© 2026 Gandhi Jaitra Nimeshkumar · Diploma in AI &amp; Data Engineering · Nanyang Polytechnic</span>
+    <span>
+      <a href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="https://github.com/noobmaster69zz" target="_blank" rel="noopener">GitHub</a> ·
+      <a href="Gandhi_Jaitra_Nimeshkumar_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </span>
+  </div>
+</footer>
+<div id="lb"><img id="lbimg" src="" alt=""></div>
+<script src="script.js"></script>
+</body>
+</html>

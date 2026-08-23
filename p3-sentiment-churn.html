@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Sentiment &amp; Churn Pipeline — Jaitra Gandhi</title>
+<meta name="description" content="A three-stage Python pipeline cleaning, scoring and serving customer reviews with explainable churn flags.">
+<meta name="author" content="Gandhi Jaitra Nimeshkumar">
+<meta name="theme-color" content="#170C0F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="mk">JG</span> Jaitra Gandhi</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+    <div class="menu" id="menu">
+      <a class="nl" href="index.html#work">Work</a>
+      <a class="nl" href="index.html#skills">Skills</a>
+      <a class="nl" href="index.html#about">About</a>
+      <a class="nl" href="index.html#contact">Contact</a>
+      <a class="navcta" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</nav><header class="phero">
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">Home</a> / <a href="index.html#work">Projects</a> / Sentiment &amp; Churn</p>
+    <p class="eyebrow">Personal project · 2026</p>
+    <h1>Customer Sentiment &amp; Churn Pipeline</h1>
+    <p class="lede">A three-stage pipeline that cleans messy customer reviews, scores them with a language model, flags the customers who sound like they are leaving, and serves it all as a dashboard a non-analyst can read unaided.</p>
+    <div class="meta"><div><div class="k">My role</div><div class="v">Sole developer</div></div><div><div class="k">System type</div><div class="v">Batch ETL + NLP</div></div><div><div class="k">Data</div><div class="v">500 reviews · 4 channels</div></div><div><div class="k">Format</div><div class="v">Personal project</div></div></div>
+  </div>
+</header>
+<section class="rub" style="border-top:0">
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact"><div class="v" data-count="500">500</div><div class="l">Raw reviews in</div></div>
+      <div class="fact"><div class="v" data-count="434">434</div><div class="l">Usable after cleaning</div></div>
+      <div class="fact"><div class="v" data-count="17">17</div><div class="l">Churn trigger phrases</div></div>
+      <div class="fact"><div class="v" data-count="4">4</div><div class="l">Source channels</div></div>
+    </div>
+  </div>
+</section>
+<section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">01 — Project scope &amp; client's problem</p>
+    <h2>Thousands of reviews, and <i>no way to tell which ones mattered.</i></h2>
+    <div class="cont">
+<p>An online retailer collects feedback through four channels — website, mobile app, email surveys and the call centre. The volume is useful in principle and unusable in practice: nobody reads every review, and a star rating compresses a paragraph of frustration into a single digit. The customers quietly about to leave rarely announce it in a way a rating captures.</p>
+<p>The scope was a pipeline turning that raw feed into two answers a manager can act on: which product areas are making customers unhappy, and which customers are showing signs of leaving — readable by someone with no analytics background and no knowledge of how the pipeline works.</p></div>
+  </div>
+</section><section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">02 — My role &amp; solution</p>
+    <h2>Two signals, <i>deliberately kept independent.</i></h2>
+    <div class="cont">
+<p>I built all three stages. Ingestion handles the unglamorous work — de-duplicating repeated submissions, dropping blank comments, normalising five inconsistent date formats — before anything downstream sees the data. Enrichment then applies two separate signals: DistilBERT scores each review from −1.0 to +1.0, while a rule-based matcher flags churn language against 17 fixed phrases.</p>
+<p>Keeping those signals independent was the key decision. The churn flag is fully explainable — every flag exposes the phrase that triggered it, so nobody is asked to trust a black box — while the sentiment score catches tone the rules would miss. When the two disagree, that disagreement is itself worth a human read.</p>
+<p>For the dashboard I treated readability as an engineering requirement rather than decoration. The colour system is a teal-to-rust diverging scale, chosen because the conventional green-red pair collapses into a single hue for people with red-green colour blindness — roughly 8% of men — which would make a sentiment-coded dashboard unusable for them.</p></div>
+  </div>
+</section><section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">03 — My work process</p>
+    <h2>Three separable stages, <i>each verifiable on its own.</i></h2>
+    <div class="cont">
+<div class="steps">
+  <div class="step"><div class="sn">01</div><div class="sb"><strong>Ingest</strong><span>500 raw reviews from four channels, carrying the usual defects of a real feed — duplicates, blanks, five date formats.</span></div></div>
+  <div class="step"><div class="sn">02</div><div class="sb"><strong>Clean</strong><span>434 usable records survive. The 13% loss rate is measured and reported on the dashboard, not hidden.</span></div></div>
+  <div class="step"><div class="sn">03</div><div class="sb"><strong>Flag</strong><span>Each review matched against 17 churn phrases, with matches stored alongside the record so every flag stays traceable.</span></div></div>
+  <div class="step"><div class="sn">04</div><div class="sb"><strong>Score</strong><span>DistilBERT assigns sentiment from −1.0 to +1.0, independent of both the star rating and the churn rules.</span></div></div>
+  <div class="step"><div class="sn">05</div><div class="sb"><strong>Store</strong><span>Enriched records land in a SQLite warehouse, giving the dashboard one queryable source instead of a chain of files.</span></div></div>
+  <div class="step"><div class="sn">06</div><div class="sb"><strong>Serve</strong><span>Streamlit renders KPIs, category sentiment, churn proportions and a searchable record explorer with CSV export.</span></div></div>
+</div></div>
+  </div>
+</section><section class="rub">
+  <div class="wrap">
+    <p class="rub-tag">04 — Outcome &amp; results achieved</p>
+    <h2>A dashboard that <i>explains itself to a first-time visitor.</i></h2>
+    <div class="cont">
+<p>The application surfaces three headline numbers, automatically names the product category with the unhappiest customers and the one with the largest churn problem, and filters by category, mood, channel, churn status and star rating — with a chip row showing exactly which filters are active, so a narrowed view never masquerades as the whole picture. Missing database, empty table and empty filter each return a plain instruction rather than a stack trace.</p>
+<p class="rub-tag" style="margin-top:30px">The rule layer, running live — type a review</p>
+<div class="demo">
+  <div class="demo-grid">
+    <div class="demo-pane">
+      <p class="pane-label">Customer review</p>
+      <textarea id="review" spellcheck="false">Ordered this twice and both arrived damaged. I've asked for a refund and I'm switching to another store.</textarea>
+      <div class="samples">
+        <button data-t="Delivery was quick and the quality is better than I expected. Very happy with this purchase.">happy</button>
+        <button data-t="Third time this has broken. I want to cancel my subscription and get my money back.">angry</button>
+        <button data-t="It arrived on time. Packaging was fine. Nothing much else to say.">neutral</button>
+        <button data-t="I don't think I'll bother again after this.">the one it misses</button>
+      </div>
+    </div>
+    <div class="demo-pane">
+      <p class="pane-label">What the pipeline flags</p>
+      <div id="verdict" class="verdict safe">Retained</div>
+      <div id="readout"></div>
+      <div id="triggers" class="trig"></div>
+    </div>
+  </div>
+  <div class="demo-foot">17 phrases, exact match, no black box. Try the last sample — it signals departure without using any listed phrase, and the rules miss it entirely.</div>
+</div>
+<div class="wins">
+  <div class="win"><strong>Explainable flags</strong><span>Every flag exposes its triggering phrase</span></div>
+  <div class="win"><strong>Accessible by design</strong><span>Palette readable with colour vision deficiency</span></div>
+  <div class="win"><strong>Fails helpfully</strong><span>Instructions, not stack traces</span></div>
+  <div class="win"><strong>Exportable</strong><span>Any filtered view downloads as CSV</span></div>
+</div>
+<div class="limits">
+  <p class="rub-tag">Limitations &amp; what I would improve</p>
+  <p><strong>The dataset is synthetic</strong>, generated for demonstration. The pipeline mechanics are real and would run unchanged on production data, but the findings describe generated reviews and are not market insight. The application was deployed to Streamlit Community Cloud during development and is not currently hosted.</p>
+  <p><strong>Phrase matching buys explainability at the cost of recall.</strong> As the demo above shows, a customer who writes "I don't think I'll bother again" signals departure without using any listed phrase, and the rules miss it. A trained classifier would catch more, trading transparency for coverage and requiring a labelled dataset. DistilBERT is also a general-purpose model applied to retail language without fine-tuning.</p>
+</div></div>
+  </div>
+</section><div class="wrap"><div class="pn"><a href="p2-cloud-application.html"><div class="k">← Previous</div><div class="t">Cost-Constrained Cloud Application</div></a><a class="next" href="index.html#work"><div class="k">Back →</div><div class="t">All projects</div></a></div></div><section class="contact" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h2>Happy to talk about <i>any of this.</i></h2>
+    <p style="max-width:52ch;margin-top:16px">The schema decisions, the AWS trade-offs, or why a gyroscope reading 0.18 against a threshold of 350 is the most interesting thing in my portfolio.</p>
+    <div class="btns">
+      <a class="btn solid" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+      <a class="btn ghost" href="https://github.com/noobmaster69zz" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn ghost" href="mailto:jaitra.gandhi@gmail.com">Email me</a>
+      <a class="btn ghost" href="Gandhi_Jaitra_Nimeshkumar_Resume.pdf" target="_blank" rel="noopener">Résumé ↓</a>
+    </div>
+  </div>
+</section><footer>
+  <div class="wrap">
+    <span>© 2026 Gandhi Jaitra Nimeshkumar · Diploma in AI &amp; Data Engineering · Nanyang Polytechnic</span>
+    <span>
+      <a href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="https://github.com/noobmaster69zz" target="_blank" rel="noopener">GitHub</a> ·
+      <a href="Gandhi_Jaitra_Nimeshkumar_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </span>
+  </div>
+</footer>
+<div id="lb"><img id="lbimg" src="" alt=""></div>
+<script src="script.js"></script>
+</body>
+</html>
