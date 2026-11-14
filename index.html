@@ -1,187 +1,172 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gandhi Jaitra Nimeshkumar — AI &amp; Data Engineering Portfolio</title>
-<meta name="description" content="AI &amp; Data Engineering student at Nanyang Polytechnic. Databases, data pipelines, cloud infrastructure and dashboards.">
-<meta name="author" content="Gandhi Jaitra Nimeshkumar">
-<meta name="theme-color" content="#170C0F">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jaitra Gandhi: AI and Data Engineering portfolio</title>
+  <meta name="description" content="Gandhi Jaitra Nimeshkumar, AI and Data Engineering student at Nanyang Polytechnic. Data pipelines, databases, cloud infrastructure and the screens that explain them.">
+  <meta name="author" content="Gandhi Jaitra Nimeshkumar">
+  <meta name="theme-color" content="#08090A">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308090A'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%2306B6D4'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23E0527A' stroke-width='1.5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
 </head>
 <body>
-<nav>
-  <div class="wrap">
-    <a class="brand" href="#top"><span class="mk">JG</span> Jaitra Gandhi</a>
-    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
-    <div class="menu" id="menu">
-      <a class="nl" href="#work">Work</a>
-      <a class="nl" href="#skills">Skills</a>
-      <a class="nl" href="#about">About</a>
-      <a class="nl" href="#contact">Contact</a>
-      <a class="navcta" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">LinkedIn ↗</a>
-    </div>
-  </div>
-</nav>
-<header class="hero" id="top">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <p class="eyebrow">AI &amp; Data Engineering · Nanyang Polytechnic · Singapore</p>
-        <h1>The data is messy. <i>The answer shouldn't be.</i></h1>
-        <p class="lede">I build the layer between a raw feed and a decision — the schema that holds it, the checks that catch what's wrong, and the screen that tells someone what to do about it.</p>
-        <div class="btns">
-          <a class="btn solid" href="#work">See the work ↓</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a class="btn ghost" href="https://github.com/noobmaster69zz" target="_blank" rel="noopener">GitHub ↗</a>
-          <a class="btn ghost" href="Gandhi_Jaitra_Nimeshkumar_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+  <a class="skip" href="#work">Skip to the work</a>
+
+  <header class="top">
+    <a class="mark" href="#top">Jaitra Gandhi</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="pill" href="cv.html">CV</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <canvas class="field" id="field" aria-hidden="true"></canvas>
+      <div class="hero-text">
+        <p class="hero-who">Gandhi Jaitra Nimeshkumar, AI and Data Engineering at Nanyang Polytechnic, Singapore</p>
+        <h1 class="hero-line">The data is messy. The answer shouldn't be.</h1>
+        <p class="hero-sub">I build the layer between a raw feed and a decision: the schema that holds it, the checks that catch what's wrong, and the screen that tells someone what to do about it.</p>
+        <div class="hero-links">
+          <a class="btn btn-solid" href="#work">See the work</a>
+          <a class="btn" href="cv.html">Read my CV</a>
+          <a class="btn" href="https://github.com/noobmaster69zz" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
-      <div class="portrait"><img src="img/portrait.png" alt="Portrait of Gandhi Jaitra Nimeshkumar"></div>
-    </div>
-  </div>
-</header>
+      <figure class="portrait">
+        <img src="img/portrait.jpg" width="640" height="800" alt="Portrait of Gandhi Jaitra Nimeshkumar">
+      </figure>
+    </section>
 
-<section id="work">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <p class="eyebrow">Selected work</p>
-      <h2>Four systems, <i>taken from a real problem to a working outcome.</i></h2>
-      <p>Each project has its own page documenting the scope, my role, my process, and what it actually achieved — including what it doesn't do.</p>
-    </div>
-    <div class="cards">
-      <a class="pcard rv" href="p1-safety-monitor.html">
-        <div class="pcard-body">
-          <p class="p-num">Project 01 · EG2A17 Data Engineering Project · Team of 4</p>
+    <section class="band" id="work">
+      <h2 class="band-title">Four systems, each taken from a real problem to something that runs.</h2>
+
+      <article class="lead">
+        <div class="lead-body">
+          <p class="kind">Personal project, live</p>
+          <h3 class="lead-name">NewsMind</h3>
+          <p class="lead-what">When a headline lands, which companies does it touch, including the ones it never names? NewsMind pulls the financial news wire, scores every headline with FinBERT, has Claude work out which companies a story is likely to move, then checks each call against the stock's price afterwards.</p>
+          <ul class="facts">
+            <li><strong>277</strong> stories read in the first snapshot</li>
+            <li><strong>8</strong> SQLite tables, idempotent loads</li>
+            <li><strong>13</strong> unit tests, run on every push</li>
+            <li><strong>6-hourly</strong> scheduled refresh on GitHub Actions</li>
+          </ul>
+          <p class="lead-note">The API key never reaches the page. A scheduled job does the model calls and the site reads saved results, so no visitor can spend my credit.</p>
+          <p class="lead-note"><strong>Next upgrade:</strong> move storage from SQLite snapshots to hosted Postgres on Supabase, so the site can query live data instead of reading a file.</p>
+          <p class="stack">Python, SQLite, FinBERT, Claude API, yfinance, GitHub Actions, JavaScript canvas</p>
+          <div class="lead-links">
+            <a class="btn btn-solid" href="https://noobmaster69zz.github.io/newsmind/" target="_blank" rel="noopener">Open the live site</a>
+            <a class="btn" href="https://github.com/noobmaster69zz/newsmind" target="_blank" rel="noopener">Read the code</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="cards">
+        <a class="card" href="p1-safety-monitor.html">
+          <img src="img/dep-dashboard.png" alt="Safety monitor dashboard showing an active alert and live sensor charts" loading="lazy" width="1200" height="700">
+          <p class="kind">EG2A17 Data Engineering Project, team of 4</p>
           <h3>Construction Worker Safety Monitor</h3>
-          <p>A wearable sensor-to-dashboard pipeline detecting falls, slip-trip-falls and near misses in real time. I owned the database, the retrieval layer and the dashboard — and found a threshold that could never fire.</p>
-          <div class="stack"><span>MariaDB</span><span>SQLite</span><span>Python</span><span>Streamlit</span><span>BLE</span><span>Arduino Nesso N1</span></div>
-          <div class="go">Read the case study →</div>
-        </div>
-        <div class="pcard-img"><img src="img/dep-dashboard.png" alt="Live safety dashboard showing an active alert"></div>
-      </a>
+          <p>A wearable sensor-to-dashboard pipeline that detects falls and near misses in real time. I owned the database, the retrieval layer and the dashboard, and found a threshold that could never fire.</p>
+          <p class="stack">MariaDB, SQLite, Python, Streamlit, BLE, 100 Hz IMU</p>
+          <span class="more">Read the case study</span>
+        </a>
 
-      <a class="pcard rv" href="p2-cloud-application.html">
-        <div class="pcard-body">
-          <p class="p-num">Project 02 · EG2A16 Cloud Computing Development · Solo</p>
+        <a class="card" href="p2-cloud-application.html">
+          <img src="img/ccd-products.jpg" alt="Product catalogue page served from the AWS application" loading="lazy" width="1200" height="700">
+          <p class="kind">EG2A16 Cloud Computing Development, solo</p>
           <h3>Cost-Constrained E-Commerce Cloud Application</h3>
-          <p>A secure three-tier application on AWS — private database, public web tier, object storage — delivered inside a $50 budget, then optimised against all six Well-Architected pillars.</p>
-          <div class="stack"><span>AWS VPC</span><span>EC2</span><span>RDS MySQL</span><span>S3</span><span>CloudWatch</span><span>Flask</span></div>
-          <div class="go">Read the case study →</div>
+          <p>A three-tier application on AWS inside a $50 budget: a private database across two availability zones, a public web tier and images in object storage.</p>
+          <p class="stack">AWS VPC, EC2, RDS MySQL, S3, nginx, Flask</p>
+          <span class="more">Read the case study</span>
+        </a>
+
+        <a class="card" href="p3-sentiment-churn.html">
+          <img src="img/ccd-cloudwatch.jpg" alt="Analytics dashboard" loading="lazy" width="1200" height="700">
+          <p class="kind">Personal project</p>
+          <h3>Customer Sentiment and Churn Pipeline</h3>
+          <p>Turns 500 messy reviews into 434 validated records, scores them with DistilBERT and flags customers who sound like they're leaving, with every flag traceable to the words that triggered it.</p>
+          <p class="stack">Python, pandas, DistilBERT, SQLite, Streamlit, Plotly</p>
+          <span class="more">Read the case study</span>
+        </a>
+      </div>
+
+      <h2 class="band-title band-title-small">Other things I've built</h2>
+      <div class="extras">
+        <article class="extra">
+          <p class="kind">EG2A12, team of 4</p>
+          <h3>Singapore Import Resilience Dashboard</h3>
+          <p>A multi-page Power BI report on how exposed Singapore's imports are when a few partners supply most of a commodity. I owned the Energy and Resilience page: thirteen visuals covering partner shares, supplier concentration (HHI), CPI linkage and dated supply shocks.</p>
+          <p class="stack">Power BI, DAX, data modelling, time series</p>
+        </article>
+        <article class="extra">
+          <p class="kind">Personal project</p>
+          <h3>HDB Resale Price Analysis</h3>
+          <p>Models roughly 200,000 public housing transactions. The cleaning stage catches a remaining-lease column stored in two formats, which parses silently to zero under a naive regex. Scored on a chronological split, so the model never sees the future.</p>
+          <p class="stack">Python, pandas, scikit-learn, gradient boosting</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="band" id="skills">
+      <h2 class="band-title">What I work with. Everything here appears in a project above.</h2>
+      <div class="skills">
+        <div>
+          <h3>Databases and pipelines</h3>
+          <p>Schema design, validation, idempotent loads, scheduled jobs.</p>
+          <p class="stack">Python, SQL, pandas, MySQL, MariaDB, SQLite, GitHub Actions</p>
         </div>
-        <div class="pcard-img"><img src="img/ccd-products.jpg" alt="Rendered product catalogue page"></div>
-      </a>
-
-      <a class="pcard rv" href="p3-sentiment-churn.html">
-        <div class="pcard-body">
-          <p class="p-num">Project 03 · Personal project</p>
-          <h3>Customer Sentiment &amp; Churn Pipeline</h3>
-          <p>A three-stage pipeline that cleans messy reviews, scores them with a language model, flags customers who sound like they're leaving, and serves it as a dashboard a non-analyst can read unaided.</p>
-          <div class="stack"><span>Python</span><span>pandas</span><span>DistilBERT</span><span>SQLite</span><span>Streamlit</span><span>Plotly</span></div>
-          <div class="go">Read the case study →</div>
+        <div>
+          <h3>Cloud and infrastructure</h3>
+          <p>Networking, compute, managed databases and object storage.</p>
+          <p class="stack">AWS VPC, EC2, RDS, S3, CloudWatch, Linux, nginx, Flask</p>
         </div>
-        <div class="pcard-img"><img src="img/ccd-cloudwatch.jpg" alt="Analytics dashboard"></div>
-      </a>
-
-      <a class="pcard rv" href="https://noobmaster69zz.github.io/newsmind/">
-        <div class="pcard-body">
-          <p class="p-num">Project 04 · Personal project</p>
-          <h3>NewsMind: News-to-Stock Impact Map</h3>
-          <p>A scheduled pipeline that pulls the financial news wire, scores every headline with FinBERT, has Claude work out which companies each story affects, and charts the result as an interactive 3D point cloud — without ever exposing an API key to the page.</p>
-          <div class="stack"><span>Python</span><span>SQLite</span><span>FinBERT</span><span>Claude API</span><span>GitHub Actions</span><span>JavaScript</span></div>
-          <div class="go">Open the live site →</div>
+        <div>
+          <h3>Models and language AI</h3>
+          <p>Using models as one stage of a pipeline, and checking what they return.</p>
+          <p class="stack">FinBERT, DistilBERT, Claude API, scikit-learn</p>
         </div>
-      </a>
-    </div>
-  </div>
-</section>
+        <div>
+          <h3>Analysis and visualisation</h3>
+          <p>Dashboards a non-specialist can read, with accessibility as a requirement.</p>
+          <p class="stack">Streamlit, Plotly, Power BI, matplotlib, JavaScript canvas</p>
+        </div>
+      </div>
+    </section>
 
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <p class="eyebrow">Skills</p>
-      <h2>What I actually work with.</h2>
-      <p>Everything below appears in at least one project on this site.</p>
-    </div>
-    <div class="caps rv">
-      <div class="cap"><h4>Databases &amp; pipelines</h4><p>Schema design, validation, batch ingestion and retrieval.</p>
-        <div class="lst">Python · SQL · pandas<br>MySQL · MariaDB · SQLite</div></div>
-      <div class="cap"><h4>Cloud &amp; infrastructure</h4><p>Networking, compute, managed databases and object storage.</p>
-        <div class="lst">AWS VPC · EC2 · RDS · S3<br>CloudWatch · Linux · nginx · Flask</div></div>
-      <div class="cap"><h4>Analysis &amp; visualisation</h4><p>Dashboards built so a non-specialist can read them, with accessibility treated as a requirement.</p>
-        <div class="lst">Streamlit · Plotly · Power BI<br>matplotlib · scikit-learn</div></div>
-    </div>
-  </div>
-</section>
+    <section class="band about" id="about">
+      <h2 class="band-title">I care most about the part nobody sees.</h2>
+      <div class="about-text">
+        <p>I'm Jaitra, a second-year AI and Data Engineering student at Nanyang Polytechnic. The work I keep returning to sits between a raw feed and a decision: deciding what counts as valid, catching the failure that returns a plausible wrong answer instead of an error, and presenting a result so the reader knows how far to trust it.</p>
+        <p>Across these projects that has meant a database confined to a private subnet, a schema that refuses to overwrite its own raw data, a churn flag that shows its reasoning, a chart that exposed a threshold which could never fire, and a model's stock calls marked right or wrong in public. The output is only ever as good as its weakest assumption, so I'd rather find the weak one myself.</p>
+      </div>
+    </section>
 
-<section id="more">
-  <div class="wrap">
-    <div class="sec-head rv"><p class="eyebrow">Additional work</p><h2>Other things I've built.</h2></div>
-    <div class="more rv">
-      <div class="mw">
-        <p class="p-num">EG2A12 · Team of 4 · Power BI</p>
-        <h4>Singapore Import Resilience Dashboard</h4>
-        <p>A multi-page Power BI report on the resilience of Singapore's import supply chains. I owned the <strong>Energy &amp; Resilience</strong> page — thirteen visuals over a model covering monthly imports, partner shares, supplier concentration (Herfindahl-Hirschman Index), CPI linkage, and dated supply-shock events with their measured price impact.</p>
-        <p>The analytical question: how exposed is a commodity when a few partners supply most of it, and what happens to price when one is disrupted?</p>
-        <div class="stack"><span>Power BI</span><span>DAX</span><span>Data modelling</span><span>HHI</span><span>Time series</span></div>
-      </div>
-      <div class="mw">
-        <p class="p-num">Personal project · Python</p>
-        <h4>HDB Resale Price Analysis</h4>
-        <p>Modelling roughly 200,000 Singapore public housing transactions to identify what drives resale price. Includes an audited cleaning stage that catches a remaining-lease column stored in two different formats — a field that parses silently to zero under a naive regex and quietly corrupts the model.</p>
-        <p>Evaluated on a chronological rather than random split, so the model is scored on genuinely unseen future sales instead of being handed the future in advance.</p>
-        <div class="stack"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Gradient boosting</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+    <section class="band contact" id="contact">
+      <h2 class="band-title">Happy to talk about any of this.</h2>
+      <p class="contact-sub">The schema decisions, the AWS trade-offs, or why a gyroscope reading of 0.18 against a threshold of 350 is the most interesting thing in my portfolio.</p>
+      <ul class="reach">
+        <li><a href="mailto:jaitra.gandhi@gmail.com"><span>Email</span><strong>jaitra.gandhi@gmail.com</strong></a></li>
+        <li><a href="https://wa.me/6596259730" target="_blank" rel="noopener"><span>WhatsApp</span><strong>+65 9625 9730</strong></a></li>
+        <li><a href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener"><span>LinkedIn</span><strong>jaitra-gandhi</strong></a></li>
+        <li><a href="https://github.com/noobmaster69zz" target="_blank" rel="noopener"><span>GitHub</span><strong>noobmaster69zz</strong></a></li>
+        <li><a href="cv.html"><span>CV</span><strong>Read or print it</strong></a></li>
+      </ul>
+    </section>
+  </main>
 
-<section id="about">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="rv">
-        <p class="eyebrow">About</p>
-        <h2>I care most about <i>the part nobody sees.</i></h2>
-        <p style="margin-top:20px">I'm Jaitra, a second-year AI &amp; Data Engineering student at Nanyang Polytechnic. The work I keep returning to sits between a raw feed and a decision: deciding what counts as valid, catching the failure that returns a plausible wrong answer instead of an error, and presenting a result so the reader knows how far to trust it.</p>
-        <p>Across these projects that has meant a database confined to a private subnet, a schema that refuses to overwrite its own raw data, a churn flag that shows its reasoning, and a chart that exposed a threshold which could never fire. The output is only ever as good as its weakest assumption — so I'd rather find the weak one myself.</p>
-      </div>
-      <div class="linkcard rv">
-        <h3>Find me elsewhere</h3>
-        <p>Profiles, code and the full résumé.</p>
-        <a class="linkrow" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener"><span class="ic">in</span><span>LinkedIn<small>Profile &amp; experience</small></span></a>
-        <a class="linkrow" href="https://github.com/noobmaster69zz" target="_blank" rel="noopener"><span class="ic">&lt;/&gt;</span><span>GitHub<small>Source code &amp; notebooks</small></span></a>
-        <a class="linkrow" href="Gandhi_Jaitra_Nimeshkumar_Resume.pdf" target="_blank" rel="noopener"><span class="ic">↓</span><span>Résumé<small>PDF download</small></span></a>
-        <a class="linkrow" href="mailto:jaitra.gandhi@gmail.com"><span class="ic">@</span><span>Email<small>jaitra.gandhi@gmail.com</small></span></a>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="contact" id="contact">
-  <div class="wrap">
-    <p class="eyebrow">Contact</p>
-    <h2>Happy to talk about <i>any of this.</i></h2>
-    <p style="max-width:52ch;margin-top:16px">The schema decisions, the AWS trade-offs, or why a gyroscope reading 0.18 against a threshold of 350 is the most interesting thing in my portfolio.</p>
-    <div class="btns">
-      <a class="btn solid" href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
-      <a class="btn ghost" href="https://github.com/noobmaster69zz" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="btn ghost" href="mailto:jaitra.gandhi@gmail.com">Email me</a>
-      <a class="btn ghost" href="Gandhi_Jaitra_Nimeshkumar_Resume.pdf" target="_blank" rel="noopener">Résumé ↓</a>
-    </div>
-  </div>
-</section><footer>
-  <div class="wrap">
-    <span>© 2026 Gandhi Jaitra Nimeshkumar · Diploma in AI &amp; Data Engineering · Nanyang Polytechnic</span>
-    <span>
-      <a href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/" target="_blank" rel="noopener">LinkedIn</a> ·
-      <a href="https://github.com/noobmaster69zz" target="_blank" rel="noopener">GitHub</a> ·
-      <a href="Gandhi_Jaitra_Nimeshkumar_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
-    </span>
-  </div>
-</footer>
-<div id="lb"><img id="lbimg" src="" alt=""></div>
-<script src="script.js"></script>
+  <footer class="foot">
+    <p>Gandhi Jaitra Nimeshkumar, Diploma in AI and Data Engineering, Nanyang Polytechnic.</p>
+  </footer>
+
+  <script src="site.js" defer></script>
 </body>
 </html>

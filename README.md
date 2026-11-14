@@ -9,6 +9,7 @@ My digital portfolio as an AI and Data Engineering student at Nanyang Polytechni
 | Page | Project |
 |---|---|
 | `index.html` | Landing page: selected work, skills, about, contact |
+| `cv.html` | Printable CV |
 | `p1-safety-monitor.html` | Construction Worker Safety Monitor (EG2A17, team of 4) |
 | `p2-cloud-application.html` | Cost-Constrained E-Commerce Cloud Application (EG2A16, solo) |
 | `p3-sentiment-churn.html` | Customer Sentiment and Churn Pipeline (personal) |
@@ -16,6 +17,9 @@ My digital portfolio as an AI and Data Engineering student at Nanyang Polytechni
 
 `style.css` and `script.js` are shared by every page. The site is plain HTML, CSS and JavaScript, served by GitHub Pages from the `main` branch.
 
-## Known issue
+## Files
 
-The pages reference screenshots and a portrait in an `img/` folder that has not been uploaded yet, so those images are currently broken on the live site.
+- `index.html`, `site.css`, `site.js`: the home page.
+- `cv.html`: my CV. Use the button on that page to print it or save it as a PDF.
+- `p1` to `p3` pages with `style.css` and `script.js`: the original case studies.
+- `img/`: portrait and project screenshots.

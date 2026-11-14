@@ -1,0 +1,248 @@
+/* Portfolio. Shares NewsMind's palette and type: carbon base, bone text, maroon and cyan. */
+:root {
+  --carbon: #08090A;
+  --plate: #0E1013;
+  --bone: #ECE6DC;
+  --ash: #9498A1;
+  --maroon: #8E1B3A;
+  --maroon-lit: #E0527A;
+  --cyan: #06B6D4;
+  --hair: rgba(236, 230, 220, 0.13);
+  --glass: rgba(236, 230, 220, 0.045);
+  --display: "Bodoni Moda", "Bodoni MT", Didot, "Times New Roman", serif;
+  --ui: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --edge: clamp(20px, 5vw, 72px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: dark; scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1000px 700px at 0% 0%, rgba(142, 27, 58, 0.3), transparent 60%),
+    radial-gradient(900px 600px at 100% 30%, rgba(6, 182, 212, 0.1), transparent 60%),
+    var(--carbon);
+  background-attachment: fixed;
+  color: var(--bone);
+  font: 400 1.02rem/1.6 var(--ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ul, figure { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 12px; top: 12px; z-index: 10; padding: 8px 14px; background: var(--bone); color: var(--carbon); border-radius: 8px; }
+
+/* ---------- Top bar ---------- */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 64px;
+  padding: 0 var(--edge);
+  border-bottom: 1px solid var(--hair);
+  background: rgba(8, 9, 10, 0.72);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.mark { font: italic 800 1.5rem/1 var(--display); letter-spacing: -0.02em; text-decoration: none; }
+.nav { display: flex; gap: 24px; margin-left: auto; font-size: 0.92rem; }
+.nav a { color: var(--ash); text-decoration: none; }
+.nav a:hover { color: var(--bone); }
+
+.pill, .btn {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid rgba(236, 230, 220, 0.28);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.pill:hover, .btn:hover { border-color: var(--cyan); color: var(--cyan); }
+.btn-solid { background: var(--bone); border-color: var(--bone); color: var(--carbon); }
+.btn-solid:hover { background: var(--cyan); border-color: var(--cyan); color: var(--carbon); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
+  gap: clamp(28px, 5vw, 80px);
+  align-items: end;
+  min-height: calc(100svh - 64px);
+  padding: clamp(40px, 8vh, 96px) var(--edge) clamp(40px, 7vh, 80px);
+  overflow: hidden;
+}
+
+.field { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.field { z-index: 0; }
+.hero-text, .portrait { position: relative; z-index: 1; }
+.hero-who { color: var(--ash); font-size: 0.95rem; max-width: 46ch; }
+
+.hero-line {
+  margin-top: 18px;
+  font: 800 clamp(2.9rem, 8.4vw, 8rem)/0.96 var(--display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  max-width: 13ch;
+}
+
+.hero-sub { margin-top: 26px; max-width: 56ch; font-size: 1.1rem; color: rgba(236, 230, 220, 0.86); }
+.hero-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+
+.portrait {
+  border: 1px solid var(--hair);
+  border-radius: 22px;
+  padding: 10px;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 40px 80px -40px #000;
+}
+
+.portrait img { border-radius: 14px; aspect-ratio: 4 / 5; object-fit: cover; }
+
+/* ---------- Bands ---------- */
+.band { padding: clamp(56px, 9vh, 110px) var(--edge); border-top: 1px solid var(--hair); }
+
+.band-title {
+  font: 700 clamp(1.9rem, 4.2vw, 3.6rem)/1.04 var(--display);
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+  max-width: 22ch;
+}
+
+.band-title-small { margin-top: clamp(48px, 7vh, 80px); font-size: clamp(1.5rem, 2.6vw, 2.2rem); }
+.kind { color: var(--ash); font-size: 0.84rem; }
+.stack { color: var(--ash); font-size: 0.86rem; }
+
+/* NewsMind leads: the one glass plate on the page. */
+.lead {
+  position: relative;
+  margin-top: clamp(28px, 5vh, 52px);
+  padding: clamp(24px, 4vw, 52px);
+  border: 1px solid var(--hair);
+  border-radius: 24px;
+  background:
+    linear-gradient(120deg, rgba(6, 182, 212, 0.1), transparent 46%, rgba(142, 27, 58, 0.26)),
+    var(--glass);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+
+.lead::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(420px circle at var(--px, 80%) var(--py, 0%), rgba(6, 182, 212, 0.16), rgba(224, 82, 122, 0.08) 45%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.lead:hover::before { opacity: 1; }
+.lead-body { position: relative; max-width: 78ch; }
+.lead-name { margin-top: 6px; font: italic 800 clamp(2.6rem, 7vw, 5.6rem)/1 var(--display); letter-spacing: -0.02em; }
+.lead-what { margin-top: 16px; font-size: 1.1rem; }
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 6px 28px;
+  margin: 22px 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+  font-size: 0.93rem;
+  color: rgba(236, 230, 220, 0.86);
+}
+
+.facts strong { color: var(--cyan); font-weight: 600; }
+.lead-note { margin-top: 10px; color: rgba(236, 230, 220, 0.86); }
+.lead-note strong { color: var(--bone); font-weight: 600; }
+.lead .stack { margin-top: 16px; }
+.lead-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(20px, 3vw, 36px);
+  margin-top: clamp(28px, 5vh, 52px);
+}
+
+.card {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  text-decoration: none;
+  padding-bottom: 18px;
+  background: linear-gradient(90deg, transparent 38%, var(--cyan) 48%, var(--maroon-lit) 54%, transparent 64%) no-repeat;
+  background-size: 300% 1px;
+  background-position: 150% 100%;
+  border-bottom: 1px solid var(--hair);
+  transition: background-position 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.card:hover, .card:focus-visible { background-position: -50% 100%; }
+.card img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border-radius: 12px; border: 1px solid var(--hair); margin-bottom: 8px; filter: saturate(0.85); }
+.card h3, .extra h3, .skills h3 { font: 700 1.5rem/1.12 var(--display); letter-spacing: -0.01em; }
+.card p:not(.kind):not(.stack), .extra p:not(.kind):not(.stack) { color: rgba(236, 230, 220, 0.86); }
+.more { margin-top: 4px; color: var(--cyan); font-size: 0.9rem; font-weight: 500; }
+
+.extras, .skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(24px, 4vw, 56px);
+  margin-top: clamp(24px, 4vh, 40px);
+}
+
+.extra, .skills > div { display: grid; gap: 8px; align-content: start; max-width: 62ch; }
+.skills h3 { font-size: 1.3rem; }
+
+.about-text { display: grid; gap: 18px; margin-top: clamp(24px, 4vh, 40px); max-width: 66ch; font-size: 1.08rem; color: rgba(236, 230, 220, 0.9); }
+
+.contact-sub { margin-top: 18px; max-width: 58ch; color: rgba(236, 230, 220, 0.86); }
+.reach { margin-top: clamp(24px, 4vh, 40px); border-top: 1px solid var(--hair); max-width: 760px; }
+
+.reach a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--hair);
+  text-decoration: none;
+  transition: color 0.15s, padding-left 0.2s;
+}
+
+.reach a:hover { color: var(--cyan); padding-left: 12px; }
+.reach span { color: var(--ash); font-size: 0.9rem; }
+.reach strong { font: 600 clamp(1.05rem, 2.4vw, 1.5rem)/1.2 var(--display); text-align: right; overflow-wrap: anywhere; }
+
+.foot { padding: 28px var(--edge) 40px; border-top: 1px solid var(--hair); color: var(--ash); font-size: 0.84rem; }
+
+@media (max-width: 760px) {
+  .nav { display: none; }
+  .pill { margin-left: auto; }
+  .hero { grid-template-columns: 1fr; align-items: start; min-height: 0; }
+  .portrait { max-width: 240px; order: -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .card, .reach a, .lead::before { transition: none; }
+}

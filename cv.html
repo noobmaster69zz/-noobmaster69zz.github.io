@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV: Gandhi Jaitra Nimeshkumar</title>
+  <meta name="description" content="CV of Gandhi Jaitra Nimeshkumar, AI and Data Engineering student at Nanyang Polytechnic.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600..800&family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #14161A; --soft: #4A4F58; --line: #D5D2CB; --accent: #8E1B3A; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #08090A; color: var(--ink); font: 400 9.5pt/1.36 "Chakra Petch", "Segoe UI", sans-serif; }
+    h1, h2, h3, p, ul { margin: 0; }
+    a { color: inherit; }
+    .bar { display: flex; gap: 12px; justify-content: center; padding: 18px; }
+    .bar a, .bar button { padding: 8px 18px; border: 1px solid rgba(236,230,220,.3); border-radius: 999px; background: none; color: #ECE6DC; font: inherit; font-size: 10pt; text-decoration: none; cursor: pointer; }
+    .bar button { background: #ECE6DC; color: #08090A; border-color: #ECE6DC; }
+    .sheet { width: 210mm; min-height: 297mm; margin: 0 auto 40px; padding: 11mm 14mm; background: #FBFAF7; }
+    h1 { font: 800 22pt/1 "Bodoni Moda", serif; letter-spacing: -0.01em; }
+    .role { margin-top: 5px; color: var(--soft); }
+    .reach { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 3px 16px; font-size: 9.6pt; }
+    h2 { margin: 10px 0 5px; padding-bottom: 3px; border-bottom: 1px solid var(--line); font: 700 12.5pt/1.1 "Bodoni Moda", serif; color: var(--accent); }
+    .item { margin-top: 6px; break-inside: avoid; }
+    .item-head { display: flex; justify-content: space-between; gap: 14px; align-items: baseline; }
+    h3 { font-size: 10.6pt; font-weight: 600; }
+    .when { color: var(--soft); white-space: nowrap; font-size: 9.6pt; }
+    .stack { color: var(--soft); font-size: 9.4pt; }
+    ul { padding-left: 15px; margin-top: 3px; }
+    li { margin-top: 1px; }
+    .skills { display: grid; grid-template-columns: 26mm 1fr; gap: 3px 10px; }
+    .skills dt { font-weight: 600; }
+    .skills dd { margin: 0; }
+    @media (max-width: 820px) { .sheet { width: auto; min-height: 0; margin: 0 10px 30px; padding: 22px 18px; } }
+    @media print {
+      @page { size: A4; margin: 0; }
+      body { background: #fff; }
+      .bar { display: none; }
+      .sheet { margin: 0; background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <a href="index.html">Back to the portfolio</a>
+    <button type="button" onclick="window.print()">Print or save as PDF</button>
+  </div>
+
+  <main class="sheet">
+    <h1>Gandhi Jaitra Nimeshkumar</h1>
+    <p class="role">AI and Data Engineering student, Nanyang Polytechnic, Singapore</p>
+    <p class="reach">
+      <a href="mailto:jaitra.gandhi@gmail.com">jaitra.gandhi@gmail.com</a>
+      <a href="https://wa.me/6596259730">+65 9625 9730</a>
+      <a href="https://www.linkedin.com/in/jaitra-gandhi-11a529430/">linkedin.com/in/jaitra-gandhi-11a529430</a>
+      <a href="https://github.com/noobmaster69zz">github.com/noobmaster69zz</a>
+    </p>
+
+    <h2>Profile</h2>
+    <p>Second-year AI and Data Engineering student (C31) at Nanyang Polytechnic. I work on the layer between a raw data feed and a decision: validation, storage design, and presenting results so a reader knows how far to trust them. Seeking an internship in data engineering or applied machine learning.</p>
+
+    <h2>Education</h2>
+    <div class="item">
+      <div class="item-head"><h3>Nanyang Polytechnic, Diploma in AI and Data Engineering (C31)</h3><span class="when">2025 to 2028 (expected)</span></div>
+      <p class="stack">School of Engineering. Relevant units: Data Engineering Project, Cloud Computing Development.</p>
+    </div>
+
+    <h2>Projects</h2>
+    <div class="item">
+      <div class="item-head"><h3>NewsMind, news-to-stock impact map (personal, live)</h3><span class="when">2026</span></div>
+      <p class="stack">Python, SQLite, FinBERT, Claude API, yfinance, GitHub Actions, JavaScript</p>
+      <ul>
+        <li>Built a scheduled pipeline that ingests financial news from Finnhub, validates and de-duplicates it by headline hash, and loads it idempotently into an eight-table SQLite schema.</li>
+        <li>Scored 277 headlines with FinBERT and used Claude with a JSON schema to name the companies each story is likely to move, then validated the model's output in code before storing it.</li>
+        <li>Checked every call against the stock's move versus the S&amp;P 500 and published the result, right or wrong, on a static site that never exposes the API key.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="item-head"><h3>Construction Worker Safety Monitor (EG2A17, team of 4)</h3><span class="when">2026</span></div>
+      <p class="stack">MariaDB, SQLite, Python, Streamlit, BLE, 6-axis IMU at 100 Hz</p>
+      <ul>
+        <li>Owned the database, retrieval layer and dashboard for a wearable that detects falls and near misses in real time.</li>
+        <li>Designed a three-table schema that never overwrites raw readings, so thresholds can be re-tuned and a recorded session replayed without new data.</li>
+        <li>Buffered writes in batches of 100 samples, cutting database round-trips by two orders of magnitude, and found a detection threshold that could never fire.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="item-head"><h3>Cost-Constrained E-Commerce Cloud Application (EG2A16, solo)</h3><span class="when">2026</span></div>
+      <p class="stack">AWS VPC, EC2, RDS MySQL, S3, nginx, Flask, Ubuntu</p>
+      <ul>
+        <li>Designed and provisioned a three-tier AWS application within a $50 budget: a VPC across two availability zones with four subnets, RDS MySQL isolated in private subnets and product images served from S3.</li>
+        <li>Deployed Flask behind nginx as a systemd service with full CRUD against the managed database.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="item-head"><h3>Customer Sentiment and Churn Pipeline (personal)</h3><span class="when">2026</span></div>
+      <p class="stack">Python, pandas, DistilBERT, SQLite, Streamlit, Plotly</p>
+      <ul>
+        <li>Built a three-stage pipeline turning 500 raw reviews from four channels into 434 validated records, enriched with a DistilBERT sentiment score and a rule-based churn matcher over 17 phrases, every flag traceable to the words that triggered it.</li>
+        <li>Deployed a live Streamlit dashboard with filterable KPIs and CSV export, using a teal-to-rust palette so it stays legible with red-green colour blindness.</li>
+      </ul>
+    </div>
+
+    <h2>Technical skills</h2>
+    <dl class="skills">
+      <dt>Languages</dt><dd>Python, SQL, JavaScript</dd>
+      <dt>Data</dt><dd>pandas, data cleaning and validation, schema design, MySQL, MariaDB, SQLite</dd>
+      <dt>Cloud</dt><dd>AWS (VPC, EC2, RDS, S3, CloudWatch), Linux, nginx, Flask</dd>
+      <dt>AI</dt><dd>FinBERT, DistilBERT, Claude API, scikit-learn</dd>
+      <dt>Visualisation</dt><dd>Streamlit, Plotly, Power BI, matplotlib</dd>
+      <dt>Tools</dt><dd>Git, GitHub Actions, Jupyter, Google Colab</dd>
+    </dl>
+  </main>
+</body>
+</html>
