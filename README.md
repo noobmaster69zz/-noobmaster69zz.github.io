@@ -1,14 +1,21 @@
-# noobmaster69zz.github.io
+# Portfolio: Gandhi Jaitra Nimeshkumar
 
-Digital portfolio — Gandhi Jaitra Nimeshkumar (253027E), EG2A17 A1, Nanyang Polytechnic.
+My digital portfolio as an AI and Data Engineering student at Nanyang Polytechnic.
 
-## Structure
+**Live site:** https://noobmaster69zz.github.io/-noobmaster69zz.github.io/
 
-- index.html — landing page
-- p1-safety-monitor.html — EG2A17 case study
-- p2-cloud-application.html — EG2A16 case study
-- p3-sentiment-churn.html — personal project case study
-- style.css / script.js — shared across all pages
-- img/ — evidence screenshots and portrait
+## What is on it
 
-Upload every file to the repository root, keeping the img/ folder intact.
+| Page | Project |
+|---|---|
+| `index.html` | Landing page: selected work, skills, about, contact |
+| `p1-safety-monitor.html` | Construction Worker Safety Monitor (EG2A17, team of 4) |
+| `p2-cloud-application.html` | Cost-Constrained E-Commerce Cloud Application (EG2A16, solo) |
+| `p3-sentiment-churn.html` | Customer Sentiment and Churn Pipeline (personal) |
+| [NewsMind](https://noobmaster69zz.github.io/newsmind/) | News-to-stock impact map (personal, [repo](https://github.com/noobmaster69zz/newsmind)) |
+
+`style.css` and `script.js` are shared by every page. The site is plain HTML, CSS and JavaScript, served by GitHub Pages from the `main` branch.
+
+## Known issue
+
+The pages reference screenshots and a portrait in an `img/` folder that has not been uploaded yet, so those images are currently broken on the live site.
