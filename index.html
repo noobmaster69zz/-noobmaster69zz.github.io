@@ -6,11 +6,11 @@
   <title>Jaitra Gandhi: AI and Data Engineering portfolio</title>
   <meta name="description" content="Gandhi Jaitra Nimeshkumar, AI and Data Engineering student at Nanyang Polytechnic. Data pipelines, databases, cloud infrastructure and the screens that explain them.">
   <meta name="author" content="Gandhi Jaitra Nimeshkumar">
-  <meta name="theme-color" content="#08090A">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308090A'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%2306B6D4'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23E0527A' stroke-width='1.5'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%237A1632'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23fff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="pill" href="cv.html">CV</a>
+    <a class="btn btn-solid" href="cv.html">CV</a>
   </header>
 
   <main id="top">
@@ -46,84 +46,132 @@
       </figure>
     </section>
 
-    <section class="band" id="work">
-      <h2 class="band-title">Four systems, each taken from a real problem to something that runs.</h2>
-
-      <article class="lead">
-        <div class="lead-body">
-          <p class="kind">Personal project, live</p>
-          <h3 class="lead-name">NewsMind</h3>
-          <p class="lead-what">When a headline lands, which companies does it touch, including the ones it never names? NewsMind pulls the financial news wire, scores every headline with FinBERT, has Claude work out which companies a story is likely to move, then checks each call against the stock's price afterwards.</p>
-          <ul class="facts">
-            <li><strong>277</strong> stories read in the first snapshot</li>
-            <li><strong>8</strong> SQLite tables, idempotent loads</li>
-            <li><strong>13</strong> unit tests, run on every push</li>
-            <li><strong>6-hourly</strong> scheduled refresh on GitHub Actions</li>
-          </ul>
-          <p class="lead-note">The API key never reaches the page. A scheduled job does the model calls and the site reads saved results, so no visitor can spend my credit.</p>
-          <p class="lead-note"><strong>Next upgrade:</strong> move storage from SQLite snapshots to hosted Postgres on Supabase, so the site can query live data instead of reading a file.</p>
-          <p class="stack">Python, SQLite, FinBERT, Claude API, yfinance, GitHub Actions, JavaScript canvas</p>
-          <div class="lead-links">
-            <a class="btn btn-solid" href="https://noobmaster69zz.github.io/newsmind/" target="_blank" rel="noopener">Open the live site</a>
-            <a class="btn" href="https://github.com/noobmaster69zz/newsmind" target="_blank" rel="noopener">Read the code</a>
-          </div>
+    <section class="band work" id="work">
+      <div class="work-head">
+        <h2 class="band-title">Six projects. Step through them one at a time.</h2>
+        <div class="deck-nav">
+          <button class="arrow" id="prev" type="button" aria-label="Previous project">&larr;</button>
+          <p class="count" id="count" aria-live="polite">1 of 6</p>
+          <button class="arrow" id="next" type="button" aria-label="Next project">&rarr;</button>
         </div>
-        <div class="shots">
-          <figure>
-            <img src="img/newsmind-cloud.jpg" width="800" height="500" loading="lazy" alt="NewsMind showing a story about tankers in the Strait of Hormuz, with dashed links to Chevron, ConocoPhillips, Exxon and Delta in the point cloud">
-            <figcaption>A story that names no company. Dashed links are the stocks Claude expects it to move.</figcaption>
-          </figure>
-          <figure>
-            <img src="img/newsmind-blip.jpg" width="800" height="500" loading="lazy" alt="NewsMind's assistant panel showing a price chart for ConocoPhillips against the S&amp;P 500 since the story">
-            <figcaption>Each call is checked against the stock's price since the story.</figcaption>
-          </figure>
-        </div>
-      </article>
-
-      <div class="cards">
-        <a class="card" href="p1-safety-monitor.html">
-          <img src="img/dep-dashboard.png" alt="Safety monitor dashboard showing an active alert and live sensor charts" loading="lazy" width="1200" height="700">
-          <p class="kind">EG2A17 Data Engineering Project, team of 4</p>
-          <h3>Construction Worker Safety Monitor</h3>
-          <p>A wearable sensor-to-dashboard pipeline that detects falls and near misses in real time. I owned the database, the retrieval layer and the dashboard, and found a threshold that could never fire.</p>
-          <p class="stack">MariaDB, SQLite, Python, Streamlit, BLE, 100 Hz IMU</p>
-          <img class="second" src="img/dep-gyro.png" alt="Gyroscope readings from the wearable sensor" loading="lazy" width="1200" height="700">
-          <span class="more">Read the case study</span>
-        </a>
-
-        <a class="card" href="p2-cloud-application.html">
-          <img src="img/ccd-products.jpg" alt="Product catalogue page served from the AWS application" loading="lazy" width="1200" height="700">
-          <p class="kind">EG2A16 Cloud Computing Development, solo</p>
-          <h3>Cost-Constrained E-Commerce Cloud Application</h3>
-          <p>A three-tier application on AWS inside a $50 budget: a private database across two availability zones, a public web tier and images in object storage.</p>
-          <p class="stack">AWS VPC, EC2, RDS MySQL, S3, nginx, Flask</p>
-          <img class="second" src="img/ccd-ec2.jpg" alt="The EC2 instance running in the AWS console" loading="lazy" width="1200" height="700">
-          <span class="more">Read the case study</span>
-        </a>
-
-        <a class="card" href="p3-sentiment-churn.html">
-          <img src="img/ccd-cloudwatch.jpg" alt="Analytics dashboard" loading="lazy" width="1200" height="700">
-          <p class="kind">Personal project</p>
-          <h3>Customer Sentiment and Churn Pipeline</h3>
-          <p>Turns 500 messy reviews into 434 validated records, scores them with DistilBERT and flags customers who sound like they're leaving, with every flag traceable to the words that triggered it.</p>
-          <p class="stack">Python, pandas, DistilBERT, SQLite, Streamlit, Plotly</p>
-          <span class="more">Read the case study</span>
-        </a>
       </div>
 
-      <h2 class="band-title band-title-small">Other things I've built</h2>
-      <div class="extras">
-        <article class="extra">
-          <p class="kind">EG2A12, team of 4</p>
-          <h3>Singapore Import Resilience Dashboard</h3>
-          <p>A multi-page Power BI report on how exposed Singapore's imports are when a few partners supply most of a commodity. I owned the Energy and Resilience page: thirteen visuals covering partner shares, supplier concentration (HHI), CPI linkage and dated supply shocks.</p>
-          <p class="stack">Power BI, DAX, data modelling, time series</p>
+      <div class="tabs" id="tabs" role="tablist" aria-label="Projects">
+        <button role="tab" type="button" aria-selected="true">NewsMind</button>
+        <button role="tab" type="button" aria-selected="false">Safety Monitor</button>
+        <button role="tab" type="button" aria-selected="false">AWS Application</button>
+        <button role="tab" type="button" aria-selected="false">Sentiment and Churn</button>
+        <button role="tab" type="button" aria-selected="false">Import Resilience</button>
+        <button role="tab" type="button" aria-selected="false">HDB Resale</button>
+      </div>
+
+      <div class="deck" id="deck" tabindex="0" aria-label="Project slides. Use the arrow keys to move between them.">
+        <article class="slide">
+          <div class="slide-media">
+            <img src="img/newsmind-cloud.jpg" width="800" height="500" alt="NewsMind showing a story about tankers in the Strait of Hormuz, with dashed links to the stocks Claude expects it to move">
+            <img src="img/newsmind-blip.jpg" width="800" height="500" loading="lazy" alt="NewsMind's assistant panel showing a price chart for ConocoPhillips against the S&amp;P 500 since the story">
+          </div>
+          <div class="slide-text">
+            <p class="kind">Personal project, live</p>
+            <h3>NewsMind</h3>
+            <p>When a headline lands, which companies does it touch, including the ones it never names? NewsMind pulls the financial news wire, scores every headline with FinBERT, has Claude work out which companies a story is likely to move, then checks each call against the stock's price afterwards.</p>
+            <ul class="facts">
+              <li><strong>277</strong> stories read in the first snapshot</li>
+              <li><strong>8</strong> SQLite tables, idempotent loads</li>
+              <li><strong>13</strong> unit tests on every push</li>
+              <li><strong>6-hourly</strong> refresh on GitHub Actions</li>
+            </ul>
+            <p>The API key never reaches the page. A scheduled job makes the model calls and the site reads saved results.</p>
+            <p><strong>Next upgrade:</strong> move storage from SQLite snapshots to hosted Postgres on Supabase, so the site can query live data instead of reading a file.</p>
+            <p class="stack">Python, SQLite, FinBERT, Claude API, yfinance, GitHub Actions, JavaScript canvas</p>
+            <div class="slide-links">
+              <a class="btn btn-solid" href="https://noobmaster69zz.github.io/newsmind/" target="_blank" rel="noopener">Open the live site</a>
+              <a class="btn" href="https://github.com/noobmaster69zz/newsmind" target="_blank" rel="noopener">Read the code</a>
+            </div>
+          </div>
         </article>
-        <article class="extra">
-          <p class="kind">Personal project</p>
-          <h3>HDB Resale Price Analysis</h3>
-          <p>Models roughly 200,000 public housing transactions. The cleaning stage catches a remaining-lease column stored in two formats, which parses silently to zero under a naive regex. Scored on a chronological split, so the model never sees the future.</p>
-          <p class="stack">Python, pandas, scikit-learn, gradient boosting</p>
+
+        <article class="slide">
+          <div class="slide-media">
+            <img src="img/dep-dashboard.png" width="1200" height="700" loading="lazy" alt="Safety monitor dashboard showing an active alert and live sensor charts">
+            <img src="img/dep-gyro.png" width="1200" height="700" loading="lazy" alt="Gyroscope readings from the wearable sensor">
+          </div>
+          <div class="slide-text">
+            <p class="kind">EG2A17 Data Engineering Project, team of 4</p>
+            <h3>Construction Worker Safety Monitor</h3>
+            <p>A wearable sensor-to-dashboard pipeline that detects falls, slips and near misses in real time. I owned everything downstream of the sensor: the database, the retrieval layer and the dashboard.</p>
+            <ul class="facts">
+              <li><strong>100 Hz</strong> sensor stream</li>
+              <li><strong>3</strong> tables, raw data never overwritten</li>
+              <li><strong>2</strong> database backends behind one interface</li>
+              <li><strong>100&times;</strong> fewer database round-trips</li>
+            </ul>
+            <p>The chart I built exposed a detection threshold that could never fire: a gyroscope reading of 0.18 against a threshold of 350.</p>
+            <p class="stack">MariaDB, SQLite, Python, Streamlit, BLE, 6-axis IMU</p>
+            <div class="slide-links"><a class="btn btn-solid" href="p1-safety-monitor.html">Read the case study</a></div>
+          </div>
+        </article>
+
+        <article class="slide">
+          <div class="slide-media">
+            <img src="img/ccd-products.jpg" width="1200" height="700" loading="lazy" alt="Product catalogue page served from the AWS application">
+            <img src="img/ccd-ec2.jpg" width="1200" height="700" loading="lazy" alt="The EC2 instance running in the AWS console">
+          </div>
+          <div class="slide-text">
+            <p class="kind">EG2A16 Cloud Computing Development, solo</p>
+            <h3>Cost-Constrained E-Commerce Cloud Application</h3>
+            <p>A secure three-tier application on AWS, delivered inside a $50 budget and then optimised against all six Well-Architected pillars. I designed and provisioned the whole stack.</p>
+            <ul class="facts">
+              <li><strong>$50</strong> total budget</li>
+              <li><strong>4</strong> subnets across 2 availability zones</li>
+              <li><strong>Private</strong> database, never internet-addressable</li>
+              <li><strong>S3</strong> for images, kept out of the database</li>
+            </ul>
+            <p class="stack">AWS VPC, EC2, RDS MySQL, S3, CloudWatch, nginx, Flask</p>
+            <div class="slide-links"><a class="btn btn-solid" href="p2-cloud-application.html">Read the case study</a></div>
+          </div>
+        </article>
+
+        <article class="slide">
+          <div class="slide-media">
+            <img src="img/ccd-cloudwatch.jpg" width="1200" height="700" loading="lazy" alt="Analytics dashboard">
+          </div>
+          <div class="slide-text">
+            <p class="kind">Personal project</p>
+            <h3>Customer Sentiment and Churn Pipeline</h3>
+            <p>A three-stage pipeline that cleans messy reviews, scores them with a language model, flags customers who sound like they're leaving, and serves it as a dashboard a non-analyst can read unaided.</p>
+            <ul class="facts">
+              <li><strong>500</strong> raw reviews from 4 channels</li>
+              <li><strong>434</strong> usable after cleaning</li>
+              <li><strong>17</strong> churn phrases, every flag traceable</li>
+              <li><strong>Colour-blind safe</strong> teal-to-rust palette</li>
+            </ul>
+            <p class="stack">Python, pandas, DistilBERT, SQLite, Streamlit, Plotly</p>
+            <div class="slide-links">
+              <a class="btn btn-solid" href="p3-sentiment-churn.html">Read the case study</a>
+              <a class="btn" href="https://github.com/noobmaster69zz/ecommerce-sentiment-churn-pipeline" target="_blank" rel="noopener">Read the code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide slide-plain">
+          <div class="slide-text">
+            <p class="kind">EG2A12, team of 4</p>
+            <h3>Singapore Import Resilience Dashboard</h3>
+            <p>A multi-page Power BI report on the resilience of Singapore's import supply chains. The question: how exposed is a commodity when a few partners supply most of it, and what happens to price when one is disrupted?</p>
+            <p>I owned the Energy and Resilience page: thirteen visuals over a model covering monthly imports, partner shares, supplier concentration (Herfindahl-Hirschman Index), CPI linkage and dated supply-shock events with their measured price impact.</p>
+            <p class="stack">Power BI, DAX, data modelling, time series</p>
+          </div>
+        </article>
+
+        <article class="slide slide-plain">
+          <div class="slide-text">
+            <p class="kind">Personal project</p>
+            <h3>HDB Resale Price Analysis</h3>
+            <p>Models roughly 200,000 Singapore public housing transactions to identify what drives resale price.</p>
+            <p>The audited cleaning stage catches a remaining-lease column stored in two formats, a field that parses silently to zero under a naive regex and quietly corrupts the model. It is scored on a chronological split, so the model is tested on genuinely unseen future sales.</p>
+            <p class="stack">Python, pandas, scikit-learn, gradient boosting</p>
+          </div>
         </article>
       </div>
     </section>
@@ -154,7 +202,7 @@
       </div>
     </section>
 
-    <section class="band about" id="about">
+    <section class="band tint" id="about">
       <h2 class="band-title">I care most about the part nobody sees.</h2>
       <div class="about-text">
         <p>I'm Jaitra, a second-year AI and Data Engineering student at Nanyang Polytechnic. The work I keep returning to sits between a raw feed and a decision: deciding what counts as valid, catching the failure that returns a plausible wrong answer instead of an error, and presenting a result so the reader knows how far to trust it.</p>
@@ -162,7 +210,7 @@
       </div>
     </section>
 
-    <section class="band contact" id="contact">
+    <section class="band" id="contact">
       <h2 class="band-title">Happy to talk about any of this.</h2>
       <p class="contact-sub">The schema decisions, the AWS trade-offs, or why a gyroscope reading of 0.18 against a threshold of 350 is the most interesting thing in my portfolio.</p>
       <ul class="reach">
